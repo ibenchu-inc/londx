@@ -1,26 +1,36 @@
 FROM openresty/openresty:alpine-fat
 
-ARG NODE_VERSION=8.x
-#COPY sites /etc/nginx/conf.d/
 
-# RUN cd /etc/nginx && ls
 
-# RUN cd /usr/local/openresty/nginx/conf  && cat nginx.conf
+COPY nginx.conf /usr/local/openresty/nginx/conf/
+# sites /etc/nginx/conf.d/
 
-# RUN apk add --no-cache \
-#     openssl
+RUN cd /usr/local/openresty/nginx/conf  && cat nginx.conf
+
+RUN apk add --no-cache \
+     openssl
 
 RUN apk add --no-cache \
     openssl
 
-RUN luarocks install lua-resty-auto-ssl && mkdir /etc/resty-auto-ssl
+RUN luarocks install lua-resty-auto-ssl && mkdir -p /etc/resty-auto-ssl/storage/file  
+RUN set -x \
+        && addgroup -g 82 -S www-data \
+        && adduser -u 82 -D -S -G www-data www-data
+
+RUN chown -R www-data:www-data /etc/resty-auto-ssl /var/log/nginx
 
 RUN openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
       -subj '/CN=sni-support-required-for-valid-ssl' \
       -keyout /etc/ssl/resty-auto-ssl-fallback.key \
       -out /etc/ssl/resty-auto-ssl-fallback.crt && \
-    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
+    openssl dhparam -out /etc/ssl/dhparam.pem 2048
 
 WORKDIR /var/www
 
-CMD [ "openrsty" ]
+CMD [ "openresty","-g","daemon off;" ]
+
+EXPOSE 80 443
+
+
+
