@@ -11,9 +11,15 @@ ARG NODE_VERSION=8.x
 #     openssl
 
 RUN apk add --no-cache \
-    openssl \
+    openssl
 
-RUN luarocks install lua-resty-auto-ssl
+RUN luarocks install lua-resty-auto-ssl && mkdir /etc/resty-auto-ssl
+
+RUN openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
+      -subj '/CN=sni-support-required-for-valid-ssl' \
+      -keyout /etc/ssl/resty-auto-ssl-fallback.key \
+      -out /etc/ssl/resty-auto-ssl-fallback.crt && \
+    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
 WORKDIR /var/www
 
