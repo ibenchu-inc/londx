@@ -8,7 +8,7 @@ COPY nginx.conf /usr/local/openresty/nginx/conf/
 
 RUN apk add --no-cache \
      openssl
-RUN luarocks install lua-resty-auto-ssl && mkdir -p /etc/resty-auto-ssl/storage/file  
+RUN luarocks install lua-resty-auto-ssl && mkdir -p /etc/resty-auto-ssl/storage/file  /var/log/nginx
 RUN set -x \
         && addgroup -g 82 -S www-data \
         && adduser -u 82 -D -S -G www-data www-data
