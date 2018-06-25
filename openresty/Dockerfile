@@ -1,5 +1,8 @@
 FROM openresty/openresty:alpine-fat
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+# China
+
 COPY nginx.conf /usr/local/openresty/nginx/conf/
 # sites /etc/nginx/conf.d/
 

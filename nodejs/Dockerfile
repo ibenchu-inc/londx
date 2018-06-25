@@ -1,4 +1,4 @@
-ARG NODE_VERSION=${NODE_VERSION}
+ARG NODE_VERSION=latest
 FROM node:${NODE_VERSION}-alpine
 
 RUN npm install pm2@latest -g 

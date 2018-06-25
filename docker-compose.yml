@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  frontend：
+  frontend:
     driver: ${NETWORKS_DRIVER}
   backend:
     driver: ${NETWORKS_DRIVER}
@@ -39,15 +39,15 @@ services:
       
   postgres:
     build:
-      context: ./nodejs
+      context: ./postgresql
     volumes:
       - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
       - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
         - "${POSTGRES_PORT}:5432"
-      environment:
+    environment:
         - POSTGRES_DB=${POSTGRES_DB}
         - POSTGRES_USER=${POSTGRES_USER}
         - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      networks:
+    networks:
         - backend
