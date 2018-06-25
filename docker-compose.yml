@@ -11,18 +11,30 @@ volumes:
     driver: ${VOLUMES_DRIVER}
 
 services:
-  openresty:
+  caddy:
     build:
-      context: ./openresty
+      context: ./caddy
     volumes:
-      # - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
-      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
-      - ${NGINX_SITES_PATH}:/etc/nginx/conf.d/
+      - ${CADDY_FILE}:/etc/Caddyfile
     ports:
       - "${NGINX_HOST_HTTP_PORT}:80"
       - "${NGINX_HOST_HTTPS_PORT}:443"
+      - "2015:2015"
     networks:
       - frontend
+
+  # openresty:
+  #   build:
+  #     context: ./openresty
+  #   volumes:
+  #     # - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+  #     - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+  #     - ${NGINX_SITES_PATH}:/etc/nginx/conf.d/
+  #   ports:
+  #     - "${NGINX_HOST_HTTP_PORT}:80"
+  #     - "${NGINX_HOST_HTTPS_PORT}:443"
+  #   networks:
+  #     - frontend
 
   nodejs:
     build:
@@ -42,7 +54,7 @@ services:
       context: ./postgresql
     volumes:
       - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
-      - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      #- ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
         - "${POSTGRES_PORT}:5432"
     environment:
