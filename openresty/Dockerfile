@@ -1,18 +1,10 @@
 FROM openresty/openresty:alpine-fat
 
-
-
 COPY nginx.conf /usr/local/openresty/nginx/conf/
 # sites /etc/nginx/conf.d/
 
-RUN cd /usr/local/openresty/nginx/conf  && cat nginx.conf
-
 RUN apk add --no-cache \
      openssl
-
-RUN apk add --no-cache \
-    openssl
-
 RUN luarocks install lua-resty-auto-ssl && mkdir -p /etc/resty-auto-ssl/storage/file  
 RUN set -x \
         && addgroup -g 82 -S www-data \
