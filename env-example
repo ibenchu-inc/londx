@@ -1,6 +1,6 @@
 APP_CODE_PATH_HOST=~/wwwroot
 
-DATA_PATH_HOST=~/londx/data
+DATA_PATH_HOST=~/.londx/data
 
 
 
@@ -26,8 +26,8 @@ NETWORKS_DRIVER=bridge
 
 VOLUMES_DRIVER=local
 
-NGINX_HOST_LOG_PATH=~/londx/log/nginx
-NGINX_SITES_PATH=~/londx/nginx/conf.d
+NGINX_HOST_LOG_PATH=~/.londx/log/nginx
+NGINX_SITES_PATH=./openresty/sites
 
 NGINX_HOST_HTTP_PORT=80
 NGINX_HOST_HTTPS_PORT=443
