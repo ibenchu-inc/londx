@@ -1,6 +1,4 @@
-FROM: abiosoft/caddy
-
-
+FROM abiosoft/caddy
 
 WORKDIR /var/www
 
