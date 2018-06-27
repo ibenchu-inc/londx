@@ -3,25 +3,26 @@ APP_CODE_PATH_HOST=~/wwwroot
 DATA_PATH_HOST=~/.londx/data
 
 
-
-########## CADDY_FILE####
+########## CADDY_FILE#######################
 
 CADDY_FILE=./caddy/Caddyfile
 
-### NODEJS ##############################################
+###### WORKSPACE #########
 
+WORKSPACE_SSH_PORT=2222
+
+### NODEJS #################################
 NODE_VERSION=10
 
 DB_POSTGRES_HOST=postgres
 
-### POSTGRES ##############################################
-
+### POSTGRES ################################
 POSTGRES_DB=default
 POSTGRES_USER=default
 POSTGRES_PASSWORD=secret
 POSTGRES_PORT=5432
 
-
+###########################################
 NETWORKS_DRIVER=bridge
 
 VOLUMES_DRIVER=local

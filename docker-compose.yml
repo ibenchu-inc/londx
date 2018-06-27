@@ -61,7 +61,7 @@ services:
       - backend
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}  
-      
+
   workerspace:
      build:
       context: ./workerspace
@@ -72,6 +72,9 @@ services:
     networks:
       - frontend
       - backend
+    ports:
+      - "${WORKSPACE_SSH_PORT}:22"
+    tty: true
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
 
