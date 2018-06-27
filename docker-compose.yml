@@ -62,6 +62,19 @@ services:
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}  
       
+  workerspace:
+     build:
+      context: ./workerspace
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+    volumes:
+      - ${APP_CODE_PATH_HOST}/:/var/www
+    networks:
+      - frontend
+      - backend
+    environment:
+      - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
+
   postgres:
     build:
       context: ./postgresql
