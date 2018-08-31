@@ -63,7 +63,7 @@ services:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}  
 
   workerspace:
-     build:
+    build:
       context: ./workerspace
       args:
         - NODE_VERSION=${NODE_VERSION}
