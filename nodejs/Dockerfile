@@ -7,4 +7,4 @@ WORKDIR /var/www/
 
 EXPOSE 3000-6000
 
-CMD ["pm2-runtime", "process.yml"]
+CMD ["pm2-runtime", "npm","--","start"]
