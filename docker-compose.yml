@@ -43,6 +43,7 @@ services:
         - NODE_VERSION=${NODE_VERSION}
     volumes:
       - ${APP_CODE_PATH_HOST}/site1:/var/www
+      - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
     networks:
       - frontend
       - backend
