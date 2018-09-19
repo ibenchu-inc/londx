@@ -50,6 +50,7 @@ services:
       - backend
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
+      - NODE_ENV={NODE_ENV}
 
   node2:
     build:
@@ -63,6 +64,7 @@ services:
       - backend
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}  
+      - NODE_ENV={NODE_ENV}
 
   workerspace:
     build:
