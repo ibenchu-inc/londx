@@ -14,6 +14,10 @@ WORKSPACE_SSH_PORT=2222
 
 NODE_VERSION=10
 DB_POSTGRES_HOST=postgres
+DB_POSTGRES_PORT=5432
+REDIS_HOST=redis
+REDIS_PORT=6379
+
 
 ############## POSTGRES ################################
 

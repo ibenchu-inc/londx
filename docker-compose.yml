@@ -11,6 +11,28 @@ volumes:
     driver: ${VOLUMES_DRIVER}
 
 services:
+  redis:
+    image: redis:alpine
+    # ports:
+    #   - "${VFAIR_REDIS_PORT}:6379"
+    networks:
+      - backend
+
+  postgres:
+    build:
+      context: ./postgresql
+    volumes:
+      - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
+      #- ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+        - "${POSTGRES_PORT}:5432"
+    environment:
+        - POSTGRES_DB=${POSTGRES_DB}
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+        - backend
+
   caddy:
     build:
       context: ./caddy
@@ -52,6 +74,23 @@ services:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
       - NODE_ENV={NODE_ENV}
 
+  node1-dev:
+    build:
+      context: ./nodejs
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+        - PM2=pm2-dev
+    volumes:
+      - ${APP_CODE_PATH_HOST}/site1:/var/www
+      - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
+    networks:
+      - frontend
+      - backend
+    environment:
+      - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
+      - NODE_ENV={NODE_ENV}
+      - PM2=pm2-dev
+
   node2:
     build:
       context: ./nodejs
@@ -83,17 +122,4 @@ services:
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
 
-  postgres:
-    build:
-      context: ./postgresql
-    volumes:
-      - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
-      #- ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
-    ports:
-        - "${POSTGRES_PORT}:5432"
-    environment:
-        - POSTGRES_DB=${POSTGRES_DB}
-        - POSTGRES_USER=${POSTGRES_USER}
-        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    networks:
-        - backend
+
