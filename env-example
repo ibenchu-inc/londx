@@ -1,35 +1,38 @@
 APP_CODE_PATH_HOST=~/wwwroot
-
 DATA_PATH_HOST=~/.londx/data
 
-NODE_ENV=production
-
-########## CADDY_FILE#######################
+################## CADDY_FILE#######################
 
 CADDY_FILE=./caddy/Caddyfile
 
-###### WORKSPACE #########
+
+################ WORKSPACE #######################
 
 WORKSPACE_SSH_PORT=2222
 
-### NODEJS #################################
-NODE_VERSION=10
+################# NODEJS #################################
 
+NODE_VERSION=10
 DB_POSTGRES_HOST=postgres
 
-### POSTGRES ################################
+############## POSTGRES ################################
+
 POSTGRES_DB=default
 POSTGRES_USER=default
 POSTGRES_PASSWORD=secret
 POSTGRES_PORT=5432
 
-###########################################
+############### ENV ########################
+
+
+# NGINX_HOST_LOG_PATH=~/.londx/log/nginx
+# NGINX_SITES_PATH=./openresty/sites
+
+HOST_HTTP_PORT=80
+HOST_HTTPS_PORT=443
+HOST_DEMO_PORT=2015
+
+
 NETWORKS_DRIVER=bridge
-
 VOLUMES_DRIVER=local
-
-NGINX_HOST_LOG_PATH=~/.londx/log/nginx
-NGINX_SITES_PATH=./openresty/sites
-
-NGINX_HOST_HTTP_PORT=80
-NGINX_HOST_HTTPS_PORT=443
+NODE_ENV=production
