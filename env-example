@@ -2,6 +2,7 @@ APP_CODE_PATH_HOST=~/wwwroot
 
 DATA_PATH_HOST=~/.londx/data
 
+NODE_ENV=production
 
 ########## CADDY_FILE#######################
 
