@@ -73,23 +73,7 @@ services:
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
       - NODE_ENV={NODE_ENV}
-
-  node1-dev:
-    build:
-      context: ./nodejs
-      args:
-        - NODE_VERSION=${NODE_VERSION}
-        - PM2=pm2-dev
-    volumes:
-      - ${APP_CODE_PATH_HOST}/site1:/var/www
-      - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
-    networks:
-      - frontend
-      - backend
-    environment:
-      - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
-      - NODE_ENV={NODE_ENV}
-      - PM2=pm2-dev
+      - PM2={PM2_ENV}
 
   node2:
     build:
