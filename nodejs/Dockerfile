@@ -15,7 +15,8 @@ EXPOSE 3000-6000
 
 # ENTRYPOINT [ "sh", "-c", "$PM2 start" ]
 
-CMD ["sh","-c","$PM2 start npm -- start"]
+#CMD ["sh","-c","$PM2 start npm -- start"]
+CMD ["pm2-runtime", "npm","--","start"]
 
 # CMD ["npm -- start"]
 
