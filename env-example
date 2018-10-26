@@ -28,6 +28,7 @@ DB_MYSQL=mysql
 ############## POSTGRES ################################
 
 DB_POSTGRES_HOST=postgres
+DB_POSTGRES_PORT=5432
 DB_POSTGRES_DATABASE=default
 DB_POSTGRES_USERNAME=default
 DB_POSTGRES_PASSWORD=secret
