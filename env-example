@@ -18,13 +18,17 @@ DB_POSTGRES_PORT=5432
 REDIS_HOST=redis
 REDIS_PORT=6379
 
+DB_POSTGRES=postgres
+DB_MYSQL=mysql
+
 
 ############## POSTGRES ################################
 
-POSTGRES_DB=default
-POSTGRES_USER=default
-POSTGRES_PASSWORD=secret
-POSTGRES_PORT=5432
+DB_POSTGRES_HOST=postgres
+DB_DATABASE_SITE1=default
+DB_POSTGRES_USERNAME=default
+DB_POSTGRES_PASSWORD=secret
+
 
 ############### ENV ########################
 
