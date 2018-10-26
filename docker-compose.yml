@@ -28,7 +28,7 @@ services:
         - "${POSTGRES_PORT}:5432"
     environment:
         - POSTGRES_DB=${DB_POSTGRES_DATABASE}
-        - POSTGRES_USER=${DB_POSTGRES_USER}
+        - POSTGRES_USER=${DB_POSTGRES_USERNAME}
         - POSTGRES_PASSWORD=${DB_POSTGRES_PASSWORD}
     networks:
         - backend
@@ -73,7 +73,7 @@ services:
     environment:
       - DB_TYPE=${DB_POSTGRES}
       - DB_HOST=${DB_POSTGRES_HOST}
-      - DB_DATABASE=${DB_DATABASE_SITE1}
+      - DB_DATABASE=${DB_POSTGRES_DATABASE_SITE1}
       - DB_USERNAME=${DB_POSTGRES_USERNAME}
       - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
       - NODE_ENV={NODE_ENV}
@@ -92,7 +92,7 @@ services:
     environment:
       - DB_TYPE=${DB_POSTGRES}
       - DB_HOST=${DB_POSTGRES_HOST}
-      - DB_DATABASE=${DB_DATABASE_SITE2}
+      - DB_DATABASE=${DB_POSTGRES_DATABASE_SITE2}
       - DB_USERNAME=${DB_POSTGRES_USERNAME}
       - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
       - NODE_ENV={NODE_ENV}
