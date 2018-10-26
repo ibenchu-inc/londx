@@ -19,13 +19,15 @@ REDIS_HOST=redis
 REDIS_PORT=6379
 
 DB_POSTGRES=postgres
+DB_POSTGRES_DATABASE_SITE1=default
+
 DB_MYSQL=mysql
 
 
 ############## POSTGRES ################################
 
 DB_POSTGRES_HOST=postgres
-DB_DATABASE_SITE1=default
+DB_POSTGRES_DATABASE=default
 DB_POSTGRES_USERNAME=default
 DB_POSTGRES_PASSWORD=secret
 
