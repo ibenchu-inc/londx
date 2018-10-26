@@ -73,7 +73,6 @@ services:
     environment:
       - DB_POSTGRES_HOST=${DB_POSTGRES_HOST}
       - NODE_ENV={NODE_ENV}
-      - PM2={PM2_ENV}
 
   node2:
     build:
