@@ -97,6 +97,25 @@ services:
       - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
       - NODE_ENV={NODE_ENV}
 
+  node1-dev:
+    build:
+      context: ./nodejs-dev
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+    volumes:
+      - ${APP_CODE_PATH_HOST}/site1:/var/www
+      - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
+    networks:
+      - frontend
+      - backend
+    environment:
+      - DB_TYPE=${DB_POSTGRES}
+      - DB_HOST=${DB_POSTGRES_HOST}
+      - DB_DATABASE=${DB_POSTGRES_DATABASE_SITE2}
+      - DB_USERNAME=${DB_POSTGRES_USERNAME}
+      - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
+      - NODE_ENV={NODE_ENV}
+
   workerspace:
     build:
       context: ./workerspace
