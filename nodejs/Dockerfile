@@ -7,6 +7,10 @@ ENV PM2=pm2-runtime
 RUN apk --no-cache add tzdata ca-certificates && \
     cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     
+## 解决日志中文乱码问题
+
+RUN echo "export LANG=zh_CN.utf8" >> /home/tomcat/.bash_profile
+    
 RUN npm install pm2@latest -g 
 
 WORKDIR /var/www/
