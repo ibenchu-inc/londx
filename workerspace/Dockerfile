@@ -38,6 +38,11 @@ RUN ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk"
         "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"    
+        
+RUN apk add --no-cache build-base  wget curl busybox  openssh   && \
+    rc-update add sshd && \
+    /etc/init.d/sshd start
+
 
 RUN npm set registry https://registry.npm.taobao.org && \
     npm set disturl https://npm.taobao.org/dist && \
