@@ -40,14 +40,18 @@ RUN ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk"
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"    
         
 RUN apk add --no-cache build-base  wget curl busybox  openssh   && \
-    rc-update add sshd && \
-    /etc/init.d/sshd start
-
+    sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && \
+    echo "root:root" | chpasswd && \
+    ssh-keygen -A
 
 RUN npm set registry https://registry.npm.taobao.org && \
     npm set disturl https://npm.taobao.org/dist && \
     npm set sass_binary_site https://npm.taobao.org/mirrors/node-sass
 
-RUN npm install pm2@latest -g 
+RUN npm install pm2@latest -g
 
 WORKDIR /var/www/
+
+EXPOSE 22
+
+CMD /usr/sbin/sshd -D -e "$@"
