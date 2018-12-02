@@ -36,6 +36,7 @@ services:
   caddy:
     build:
       context: ./caddy
+    restart: always
     volumes:
       - ${CADDY_FILE}:/etc/Caddyfile
       - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
