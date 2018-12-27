@@ -41,7 +41,7 @@ RUN npm install pm2@latest -g
 
 WORKDIR /var/www/
 
-EXPOSE 3000-6000
+EXPOSE 3000
 
 CMD ["pm2-runtime", "npm","--","start"]
 
