@@ -37,7 +37,7 @@ RUN ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk"
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
 
 
-RUN npm install pm2@latest -g 
+RUN npm install pm2@latest -g && pm2 install typescript
 
 WORKDIR /var/www/
 
