@@ -18,7 +18,8 @@ services:
     #   - "${VFAIR_REDIS_PORT}:6379"
     networks:
       - backend
-
+      
+### Postgres ##############################################
   postgres:
     build:
       context: ./postgresql
@@ -46,10 +47,14 @@ services:
         - ${DATA_PATH_HOST}/pgadmin-backup:/var/lib/pgadmin/storage/pgadmin4
       depends_on:
         - postgres
+      environment:
+        - DEFAULT_USER=${PGADMIN_DEFAULT_USER}
+        - DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
       networks:
         - frontend
         - backend
-
+        
+### Caddy ##############################################
   caddy:
     build:
       context: ./caddy
@@ -79,7 +84,8 @@ services:
   #      - "${NGINX_HOST_HTTPS_PORT}:443"
   #    networks:
   #      - frontend
-
+  
+### nodejs ##############################################
   node1:
     build:
       context: ./nodejs
@@ -139,7 +145,8 @@ services:
       - DB_USERNAME=${DB_POSTGRES_USERNAME}
       - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
       - NODE_ENV={NODE_ENV}
-
+      
+### workspace ##############################################
   workerspace:
     build:
       context: ./workerspace
