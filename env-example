@@ -36,7 +36,7 @@ DB_POSTGRES_PASSWORD=secret
 ############## PGADMIN ################################
 
 PGADMIN_DEFAULT_USER=admin
-PGADMIN_DEFAULT_USER=secret
+PGADMIN_DEFAULT_PASSWORD=secret
 
 
 ############### ENV ########################
