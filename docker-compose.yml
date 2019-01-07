@@ -55,20 +55,20 @@ services:
 
         
 ### pgAdmin ##############################################
-    pgadmin:
-      build: ./pgadmin
-      ports:
-        - "5050:5050"
-      volumes:
-        - ${DATA_PATH_HOST}/pgadmin-backup:/pgadmin
-      depends_on:
-        - postgres
-      environment:
-        - PGADMIN_SETUP_EMAIL=${PGADMIN_DEFAULT_USER}
-        - PGADMIN_SETUP_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-      networks:
-        - frontend
-        - backend
+  pgadmin:
+    build: ./pgadmin
+    ports:
+      - "5050:5050"
+    volumes:
+      - ${DATA_PATH_HOST}/pgadmin-backup:/pgadmin
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_SETUP_EMAIL=${PGADMIN_DEFAULT_USER}
+      - PGADMIN_SETUP_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - frontend
+      - backend
         
 ### Caddy ##############################################
   caddy:
