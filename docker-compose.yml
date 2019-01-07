@@ -44,7 +44,7 @@ services:
       ports:
         - "5050:5050"
       volumes:
-        - ${DATA_PATH_HOST}/pgadmin-backup:/var/lib/pgadmin/storage/pgadmin4
+        - ${DATA_PATH_HOST}/pgadmin-backup:/pgadmin
       depends_on:
         - postgres
       environment:
