@@ -48,8 +48,8 @@ services:
       depends_on:
         - postgres
       environment:
-        - DEFAULT_USER=${PGADMIN_DEFAULT_USER}
-        - DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+        - PGADMIN_SETUP_EMAIL=${PGADMIN_DEFAULT_USER}
+        - PGADMIN_SETUP_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
       networks:
         - frontend
         - backend
