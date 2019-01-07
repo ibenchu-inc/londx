@@ -36,6 +36,19 @@ services:
         - POSTGRES_PASSWORD=${DB_POSTGRES_PASSWORD}
     networks:
         - backend
+        
+### pgAdmin ##############################################
+    pgadmin:
+      build: ./pgadmin
+      ports:
+        - "5050:5050"
+      volumes:
+        - ${DATA_PATH_HOST}/pgadmin-backup:/var/lib/pgadmin/storage/pgadmin4
+      depends_on:
+        - postgres
+      networks:
+        - frontend
+        - backend
 
   caddy:
     build:
