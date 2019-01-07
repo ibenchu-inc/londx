@@ -1,4 +1,4 @@
-FROM fenglc/pgadmin4:alpine
+FROM chorss/docker-pgadmin4
 
 LABEL maintainer="Huadong Zuo <admin@zuohuadong.cn>"
 
