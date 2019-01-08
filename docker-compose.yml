@@ -13,7 +13,9 @@ volumes:
 services:
   redis:
     image: redis:alpine
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
     # ports:
     #   - "${VFAIR_REDIS_PORT}:6379"
     networks:
@@ -25,7 +27,9 @@ services:
       context: ./postgresql
       args:
       - PG_VERSION=10
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
     volumes:
       - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
       #- ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
@@ -74,7 +78,9 @@ services:
   caddy:
     build:
       context: ./caddy
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
     volumes:
       - ${CADDY_FILE}:/etc/Caddyfile
       - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
@@ -107,7 +113,9 @@ services:
       context: ./nodejs
       args:
         - NODE_VERSION=${NODE_VERSION}
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
     volumes:
       - ${APP_CODE_PATH_HOST}/site1:/var/www
       - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
@@ -127,7 +135,9 @@ services:
       context: ./nodejs
       args:
         - NODE_VERSION=${NODE_VERSION}
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
     volumes:
       - ${APP_CODE_PATH_HOST}/site2:/var/www
       - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
@@ -147,7 +157,6 @@ services:
       context: ./nodejs-dev
       args:
         - NODE_VERSION=${NODE_VERSION}
-    restart: always
     volumes:
       - ${APP_CODE_PATH_HOST}/site1:/var/www
       - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
@@ -197,6 +206,9 @@ services:
       context: ./workerspace
       args:
         - NODE_VERSION=${NODE_VERSION}
+    deploy:
+      restart_policy:
+        condition: on-failure
     volumes:
       - ${APP_CODE_PATH_HOST}/:/var/www
     networks:
