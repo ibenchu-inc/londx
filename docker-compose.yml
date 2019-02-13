@@ -42,6 +42,26 @@ services:
     networks:
         - backend
         
+### prisma ##############################################
+
+  prisma:
+    image: prismagraphql/prisma:1.26
+    restart: always
+    ports:
+    - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: ${DB_POSTGRES_HOST}
+            host: postgres
+            port: ${DB_POSTGRES_PORT}
+            database: default
+            user: ${DB_POSTGRES_USERNAME}
+            password: ${DB_POSTGRES_PASSWORD}
+            migrations: true
+        
 ### RabbitMQ #############################################
   rabbitmq:
     build: 
@@ -177,34 +197,34 @@ services:
       - DB_REDIS_PORT=${DB_REDIS_PROT}
       - NODE_ENV=${NODE_ENV}
 
-  node-cluster:
-    build:
-      context: ./nodejs
-      args:
-        - NODE_VERSION=${NODE_VERSION}
-    deploy:
-      replicas: 3
-      resources:
-        limits:
-          cpus: "0.2"
-          memory: 200M
-      restart_policy:
-        condition: on-failure
-    volumes:
-      - ${APP_CODE_PATH_HOST}/site1:/var/www
-      - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
-    networks:
-      - frontend
-      - backend
-    environment:
-      - DB_TYPE=${DB_POSTGRES}
-      - DB_HOST=${DB_POSTGRES_HOST}
-      - DB_DATABASE=${DB_POSTGRES_DATABASE_SITE1}
-      - DB_USERNAME=${DB_POSTGRES_USERNAME}
-      - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
-      - DB_REDIS_HOST=${DB_REDIS_HOST}
-      - DB_REDIS_PORT=${DB_REDIS_PROT}
-      - NODE_ENV=${NODE_ENV}
+#   node-cluster:
+#     build:
+#       context: ./nodejs
+#       args:
+#         - NODE_VERSION=${NODE_VERSION}
+#     deploy:
+#       replicas: 3
+#       resources:
+#         limits:
+#           cpus: "0.2"
+#           memory: 200M
+#       restart_policy:
+#         condition: on-failure
+#     volumes:
+#       - ${APP_CODE_PATH_HOST}/site1:/var/www
+#       - ${APP_CODE_PATH_HOST}/ssl:/var/www/ssl
+#     networks:
+#       - frontend
+#       - backend
+#     environment:
+#       - DB_TYPE=${DB_POSTGRES}
+#       - DB_HOST=${DB_POSTGRES_HOST}
+#       - DB_DATABASE=${DB_POSTGRES_DATABASE_SITE1}
+#       - DB_USERNAME=${DB_POSTGRES_USERNAME}
+#       - DB_PASSWORD=${DB_POSTGRES_PASSWORD}
+#       - DB_REDIS_HOST=${DB_REDIS_HOST}
+#       - DB_REDIS_PORT=${DB_REDIS_PROT}
+#       - NODE_ENV=${NODE_ENV}
 
 
         
