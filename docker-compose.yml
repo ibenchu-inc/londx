@@ -42,25 +42,6 @@ services:
     networks:
         - backend
         
-### prisma ##############################################
-
-  prisma:
-    image: prismagraphql/prisma:1.26
-    restart: always
-    ports:
-    - "4466:4466"
-    environment:
-      PRISMA_CONFIG: |
-        port: 4466
-        databases:
-          default:
-            connector: ${DB_POSTGRES_HOST}
-            host: postgres
-            port: ${DB_POSTGRES_PORT}
-            database: default
-            user: ${DB_POSTGRES_USERNAME}
-            password: ${DB_POSTGRES_PASSWORD}
-            migrations: true
         
 ### RabbitMQ #############################################
   rabbitmq:
