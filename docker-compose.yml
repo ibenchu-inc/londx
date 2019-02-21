@@ -210,9 +210,9 @@ services:
 
         
 ### workspace ##############################################
-  workerspace:
+  workspace:
     build:
-      context: ./workerspace
+      context: ./workspace
       args:
         - NODE_VERSION=${NODE_VERSION}
     deploy:
