@@ -39,10 +39,11 @@ RUN ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk"
         "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"    
         
-RUN apk add --no-cache build-base  wget curl busybox  openssh   && \
-    sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && \
-    echo "root:root" | chpasswd && \
-    ssh-keygen -A
+RUN apk add --no-cache build-base  wget curl busybox  openssh  
+
+ADD docker-entrypoint.sh /usr/local/bin
+#make sure we get fresh keys
+RUN rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key
 
 RUN npm set registry https://registry.npm.taobao.org && \
     npm set disturl https://npm.taobao.org/dist && \
@@ -54,4 +55,5 @@ WORKDIR /var/www/
 
 EXPOSE 22
 
-CMD /usr/sbin/sshd -D -e "$@"
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["/usr/sbin/sshd","-D"]
