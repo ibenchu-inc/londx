@@ -12,7 +12,7 @@ WORKSPACE_SSH_PORT=2222
 
 ################# NODEJS #################################
 
-NODE_VERSION=10
+NODE_VERSION=12
 DB_POSTGRES_HOST=postgres
 DB_POSTGRES_PORT=5432
 
