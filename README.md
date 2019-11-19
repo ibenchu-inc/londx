@@ -12,6 +12,8 @@
 
 然后 `source ~/.bashrc`
 
+alipine 版，同线上
+
 ```
 yarn () {
     tty=
@@ -25,6 +27,25 @@ yarn () {
         --volume /etc/group:/etc/group:ro \
         --volume $(pwd):/usr/src/app \
         -w /usr/src/app \
-        node:alpine yarn ”$@“
+        node:alpine-lts yarn ”$@“
+}
+```
+
+debian 版，同本地
+
+```
+yarn () {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+        $tty \
+        --interactive \
+        --rm \
+        --user $(id -u):$(id -g) \
+        --volume /etc/passwd:/etc/passwd:ro \
+        --volume /etc/group:/etc/group:ro \
+        --volume $(pwd):/usr/src/app \
+        -w /usr/src/app \
+        node:lts yarn ”$@“
 }
 ```
