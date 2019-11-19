@@ -1,6 +1,6 @@
 ## 使用
-1. 修改 env-example 配置
-2. cp env-example .env
+1. cp env-example .env
+2. 修改 .env 配置
 3. docker-compose up  caddy postgres nodejs  
 
 
