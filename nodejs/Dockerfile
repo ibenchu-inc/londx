@@ -3,7 +3,7 @@ FROM node:${NODE_VERSION}-alpine
 
 ENV PM2=pm2-runtime
 ENV LANG=C.UTF-8
-# ARG ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download"
+ARG ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download"
 ARG ALPINE_GLIBC_PACKAGE_VERSION="2.35-r0"
 
 ## 使用国内时区，日志以中文显示
