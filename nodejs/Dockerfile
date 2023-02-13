@@ -15,8 +15,9 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 RUN apk add --no-cache --virtual=.build-dependencies tzdata wget ca-certificates && \
     cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
-    rm "/etc/apk/keys/sgerrand.rsa.pub" && \
-    /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
+    rm "/etc/apk/keys/sgerrand.rsa.pub" 
+
+RUN /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
     echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
     \
     apk del glibc-i18n && \
