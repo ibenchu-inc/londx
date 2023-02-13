@@ -10,7 +10,7 @@ ARG ALPINE_GLIBC_PACKAGE_VERSION="2.35-r0"
 
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
     wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/"$ALPINE_GLIBC_PACKAGE_VERSION"/glibc-"$ALPINE_GLIBC_PACKAGE_VERSION".apk && \
-    apk add glibc-"$ALPINE_GLIBC_PACKAGE_VERSIO".apk 
+    apk add glibc-"$ALPINE_GLIBC_PACKAGE_VERSION".apk 
     
 RUN apk add --no-cache --virtual=.build-dependencies tzdata wget ca-certificates && \
     cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
