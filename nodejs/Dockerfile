@@ -1,4 +1,4 @@
-ARG NODE_VERSION=latest
+ARG NODE_VERSION=lts
 FROM node:${NODE_VERSION}-alpine
 
 ENV PM2=pm2-runtime
