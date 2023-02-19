@@ -52,12 +52,12 @@ ENV LANG=C.UTF-8
 #         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
 
 
-RUN yarn add pm2@latest -g && pm2 install typescript
+# RUN yarn add pm2@latest -g && pm2 install typescript
 
 WORKDIR /var/www/
 
 EXPOSE 3000
 
-CMD ["pm2-runtime", "npm","--","start"]
+CMD [ "npm","--","start"]
 
 
