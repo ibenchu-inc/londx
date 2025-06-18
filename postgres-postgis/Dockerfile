@@ -1,4 +1,4 @@
-FROM mdillon/postgis:10-alpine
+FROM postgis/postgis:latest
 
 RUN apk add --no-cache --virtual=.build-dependencies tzdata ca-certificates && \
     cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \

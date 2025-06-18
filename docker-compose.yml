@@ -26,7 +26,7 @@ services:
     build:
       context: ./postgresql
       args:
-      - PG_VERSION=10
+      - PG_VERSION=latest
     deploy:
       restart_policy:
         condition: on-failure

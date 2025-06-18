@@ -1,4 +1,4 @@
-FROM chorss/docker-pgadmin4
+FROM dpage/pgadmin4:latest
 
 LABEL maintainer="Huadong Zuo <admin@zuohuadong.cn>"
 

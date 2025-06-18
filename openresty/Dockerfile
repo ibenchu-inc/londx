@@ -1,4 +1,4 @@
-FROM openresty/openresty:alpine-fat
+FROM openresty/openresty:latest
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 # China

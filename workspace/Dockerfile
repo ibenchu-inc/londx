@@ -1,4 +1,4 @@
-ARG NODE_VERSION=${NODE_VERSION}
+ARG NODE_VERSION=current
 FROM node:${NODE_VERSION}-alpine
 
 ENV PM2=pm2-runtime

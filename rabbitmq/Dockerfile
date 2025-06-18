@@ -1,4 +1,4 @@
-FROM rabbitmq
+FROM rabbitmq:latest
 
 LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 

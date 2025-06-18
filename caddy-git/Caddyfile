@@ -1,18 +1,29 @@
-0.0.0.0:2015 {
-    root /var/www/site1/
-    git {
-	repo https://gitee.com/caddy-china/docs
-	## 私有项目需要添加key
-	# key /root/.ssh/id_rsa
-        path /home/caddy-docs
-		## password 改成你的密码
-        hook  /webhook password
-		## 使webhook支持码云
-        hook_type   generic
-		## 更新完之后如果需要执行命令，比如 npm run build，如果需要多个命令，多行then 即可
-	    # then npm run build
-    }
-    ## 如果需要自动申请 https 证书  请开启 tls 。
-    #tls xx@163.com
-    gzip
+:2015
+
+# 站点根目录
+root * /var/www/site1/
+encode gzip zstd br
+
+# git 插件配置，支持自动拉取代码
+# repo 为仓库地址，path 为本地路径
+# 私有项目需要添加 key
+# hook 为 webhook 密钥，hook_type 支持 generic 适配码云
+# then 可执行自动构建命令
+
+git {
+    repo https://gitee.com/caddy-china/docs
+    # key /root/.ssh/id_rsa
+    path /home/caddy-docs
+    # password 改成你的密码
+    hook  /webhook password
+    # 使webhook支持码云
+    hook_type generic
+    # 更新完之后如果需要执行命令，比如 npm run build，如果需要多个命令，多行 then 即可
+    # then npm run build
 }
+
+# 启用文件服务
+file_server
+
+# 如果需要自动申请 https 证书  请开启 tls 。
+# tls xx@163.com
