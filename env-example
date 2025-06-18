@@ -6,13 +6,19 @@ DATA_PATH_HOST=~/.londx/data
 CADDY_FILE=./caddy/Caddyfile
 
 
+################## 网络与卷驱动 ####################
+
+NETWORKS_DRIVER=bridge
+VOLUMES_DRIVER=local
+
 ################ WORKSPACE #######################
 
 WORKSPACE_SSH_PORT=2222
 
 ################# NODEJS #################################
 
-NODE_VERSION=12
+NODE_VERSION=lts
+NODE_ENV=production
 DB_POSTGRES_HOST=postgres
 DB_POSTGRES_PORT=5432
 
